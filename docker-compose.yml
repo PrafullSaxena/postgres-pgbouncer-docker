@@ -9,6 +9,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
       POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --data-checksums
+    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     volumes:
       # PostgreSQL 18+ stores versioned data beneath /var/lib/postgresql.
       - postgres_data:/var/lib/postgresql
